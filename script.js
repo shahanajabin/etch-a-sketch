@@ -12,6 +12,8 @@ function gridSquare(size) {
     const squares = size * size;
     for (let i = 0; i < squares; i++) {
         const square = document.createElement('div');
+        square.style.width = `${750 / size}px`;
+        square.style.height = `${750 / size}px`;
         square.classList.add('square');
         container.appendChild(square);
     }
@@ -45,13 +47,12 @@ gridSize.addEventListener('click', function () {
     }
 });
 
-// function reset(event) {
-//     document.querySelector('.reset').reset()
-// }
 
-// const reset = document.querySelector('.reset')
-// reset.addEventListener('click', function () {
-//     square.forEach(item => {
-//         item.style.backgroundColor = null;
-//     })
-// })
+const reset = document.querySelector('.reset')
+reset.addEventListener('click', () => {
+    const squares = document.querySelectorAll(".square");
+    squares.forEach(item => {
+        item.style.backgroundColor = null;
+    })
+})
+
