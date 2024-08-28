@@ -5,9 +5,6 @@ const container = document.querySelector('.container');
 // Initial 16 * 16 Grid
 
 function gridSquare(size) {
-
-
-
     container.innerHTML = '';
     const squares = size * size;
     for (let i = 0; i < squares; i++) {
@@ -25,13 +22,25 @@ gridSquare(16);
 // Hover For Grid 
 
 function hover() {
+
     const square = document.querySelectorAll('.square');
-    square.forEach(item => {
-        item.addEventListener('mouseover', () => {
-            item.style.backgroundColor = "black";
-        })
+    square.forEach(elem => {
+        elem.addEventListener('mouseover', () => {
+            //  console.log(opacity);
+
+            elem.style.backgroundColor = "black";
+        });
+        if (!elem.style.opacity) {
+            elem.style.opacity = .1;
+        }
+        elem.addEventListener("mouseover", () => {
+            let opacity = parseFloat(elem.style.opacity) || 0;
+            opacity = Math.min(opacity + 0.1, 1);
+            elem.style.opacity = opacity;
+        });
     });
 }
+
 
 // Grid Button 
 
@@ -43,7 +52,7 @@ gridSize.addEventListener('click', function () {
     if (gridSize > 4 && gridSize < 100) {
         gridSquare(gridSize)
     } else {
-        alert("Enter The Size Between 4 And 100!")
+        alert("Enter The Size Between 4 And 100.")
     }
 });
 
